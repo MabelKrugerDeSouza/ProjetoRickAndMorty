@@ -82,9 +82,7 @@
 				5781F8C9272892F900B148BC /* View */,
 				5781F8CA2728930500B148BC /* Controller */,
 				5781F8AE272891A900B148BC /* AppDelegate.swift */,
-				5781F8B4272891A900B148BC /* Main.storyboard */,
 				5781F8B7272891AD00B148BC /* Assets.xcassets */,
-				5781F8B9272891AD00B148BC /* LaunchScreen.storyboard */,
 				5781F8BC272891AD00B148BC /* Info.plist */,
 				57F7B906272AC8F2007C008E /* RickAndMorty.xcdatamodeld */,
 			);
@@ -114,6 +112,8 @@
 		5781F8C9272892F900B148BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5781F8B9272891AD00B148BC /* LaunchScreen.storyboard */,
+				5781F8B4272891A900B148BC /* Main.storyboard */,
 				5781F8C6272892BC00B148BC /* Cell */,
 			);
 			path = View;
@@ -122,19 +122,11 @@
 		5781F8CA2728930500B148BC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5781F8D52728989300B148BC /* Extensions */,
 				5781F8B2272891A900B148BC /* ViewController.swift */,
 				57F7B8CF2728A091007C008E /* DetailVC.swift */,
 				57F7B909272AD0E7007C008E /* DataBaseController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		5781F8D52728989300B148BC /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		57F7B90B272AD254007C008E /* enum */ = {
@@ -390,6 +382,7 @@
 				INFOPLIST_FILE = ProjetoFinalRickAndMorty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -417,6 +410,7 @@
 				INFOPLIST_FILE = ProjetoFinalRickAndMorty/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -8,7 +8,6 @@
 import Foundation
 
 struct Personagem: Codable{
-    var id      : Int?
     var name    : String?
     var status  : String?
     var genrer  : String?

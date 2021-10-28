@@ -39,7 +39,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="species" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-ja-BsC">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="species" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-ja-BsC">
                         <rect key="frame" x="189" y="67" width="155" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -48,21 +48,21 @@
                 </subviews>
                 <color key="backgroundColor" red="0.5816247773864891" green="0.78649491069999999" blue="0.2744195534422959" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
-                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="8" id="2YT-bL-Tz8"/>
+                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="-5" id="2YT-bL-Tz8"/>
                     <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="0.5" id="5cK-6P-kkb"/>
                     <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="0.5" id="8nb-Yn-9Fi"/>
-                    <constraint firstItem="gBw-ja-BsC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="63" id="AZe-xH-MOa"/>
+                    <constraint firstItem="gBw-ja-BsC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="67" id="AZe-xH-MOa"/>
                     <constraint firstItem="ixF-F4-8nF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="EqJ-J2-CVf"/>
-                    <constraint firstAttribute="trailing" secondItem="gBw-ja-BsC" secondAttribute="trailing" constant="16" id="OxC-81-9aQ"/>
+                    <constraint firstAttribute="trailing" secondItem="gBw-ja-BsC" secondAttribute="trailing" constant="29" id="OxC-81-9aQ"/>
                     <constraint firstAttribute="trailing" secondItem="hRp-YS-J4a" secondAttribute="trailing" constant="20" id="QNz-lW-7ku"/>
                     <constraint firstAttribute="bottom" secondItem="fe1-js-2lb" secondAttribute="bottom" constant="8" id="Vlu-7W-2zw"/>
                     <constraint firstItem="ixF-F4-8nF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="dKV-iS-2T9"/>
                     <constraint firstItem="hRp-YS-J4a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="gxk-7A-nsw"/>
                     <constraint firstAttribute="bottom" secondItem="ixF-F4-8nF" secondAttribute="bottom" constant="8" id="mCk-zC-eiM"/>
-                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="8" id="mZT-Kc-WrO"/>
+                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="-5" id="mZT-Kc-WrO"/>
                     <constraint firstItem="fe1-js-2lb" firstAttribute="leading" secondItem="ixF-F4-8nF" secondAttribute="trailing" constant="8" id="oIL-ee-AlE"/>
                     <constraint firstItem="hRp-YS-J4a" firstAttribute="leading" secondItem="ixF-F4-8nF" secondAttribute="trailing" constant="8" id="qgi-k3-tjW"/>
-                    <constraint firstAttribute="bottom" secondItem="gBw-ja-BsC" secondAttribute="bottom" id="x6J-XO-WrY"/>
+                    <constraint firstAttribute="bottom" secondItem="gBw-ja-BsC" secondAttribute="bottom" constant="4" id="x6J-XO-WrY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

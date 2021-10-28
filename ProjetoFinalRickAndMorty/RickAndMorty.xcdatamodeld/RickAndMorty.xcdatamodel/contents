@@ -7,11 +7,7 @@
         <attribute name="species" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Resulta" representedClassName="Resulta" syncable="YES" codeGenerationType="class">
-        <attribute name="results" optional="YES" attributeType="String"/>
-    </entity>
     <elements>
         <element name="Personagens" positionX="-63" positionY="-18" width="128" height="104"/>
-        <element name="Resulta" positionX="-54" positionY="27" width="128" height="44"/>
     </elements>
 </model>
