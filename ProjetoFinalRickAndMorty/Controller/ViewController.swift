@@ -31,7 +31,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.receberAPI()
+    }
+    
+    func receberAPI(){
         api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
             self.arrayPersonagens = personagens
             DispatchQueue.main.async {
@@ -48,6 +55,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
+    
+    
     func createSpinnerFooter()-> UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         let spinner = UIActivityIndicatorView()
@@ -72,8 +81,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                     self.currentPage += 1
                     self.tabelaPersonagem.reloadData()
                 }
-            } errorR: { errorR in
-                //alerta de erro
+            } errorR: { errorS in
+                // error
             }
         }
     }
@@ -83,13 +92,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
             let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
-                self.viewDidLoad()
+                self.receberAPI()
             }
             
-//            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
-//                let favoritos = FavoritosViewController()
-//                self.navigationController?.pushViewController(favoritos, animated: true)
-//            }
             let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
             
             alert.addAction(botaoRefazChamada)

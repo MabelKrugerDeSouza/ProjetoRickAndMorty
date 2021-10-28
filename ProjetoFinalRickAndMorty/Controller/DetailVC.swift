@@ -23,8 +23,7 @@ class DetailVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //self.view.addSubview(self.uitv_tabela)
+    
         self.title = personagemTocado.name
         self.view.addSubview(detailPersonagem)
         
