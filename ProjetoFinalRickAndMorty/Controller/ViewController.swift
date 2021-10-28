@@ -38,7 +38,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 self.tabelaPersonagem.reloadData()
             }
         } errorR: { errorR in
-            print(errorR)
+            switch errorR{
+            case .emptyArray:
+                self.mostraAlerta(mensagem: "Deu error")
+            case .notFound:
+                self.mostraAlerta(mensagem: "Sem internet")
+            default:
+                break;
+            }
         }
     }
     func createSpinnerFooter()-> UIView{
@@ -70,6 +77,30 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
         }
     }
+    
+    func mostraAlerta(mensagem: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
+            
+            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
+                self.viewDidLoad()
+            }
+            
+//            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
+//                let favoritos = FavoritosViewController()
+//                self.navigationController?.pushViewController(favoritos, animated: true)
+//            }
+            let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            
+            alert.addAction(botaoRefazChamada)
+            //alert.addAction(botaoLevaParaFavoritos)
+            alert.addAction(botaoEntendi)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource{
