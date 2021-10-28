@@ -9,17 +9,22 @@ import UIKit
 import Kingfisher
 
 class ViewController: UIViewController, UIScrollViewDelegate {
+    
     var arrayPersonagens: [Personagem] = []
     var api = API()
     let reuseIdentifier = "Celula"
     var currentPage = 1
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
     
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
         
-        tabela.frame = self.view.bounds
-        tabela.dataSource = self
-        tabela.delegate = self
+        tabela.frame        = self.view.bounds
+        tabela.dataSource   = self
+        tabela.delegate     = self
         
         let nib = UINib(nibName: "CelulaTableViewCell", bundle: nil)
         tabela.register(nib, forCellReuseIdentifier: reuseIdentifier)
@@ -31,13 +36,21 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
+        //self.tabelaPersonagem.backgroundColor = .green
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.receberAPI()
+        configureSearchBar()
     }
     
+    func configureSearchBar() {
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Buscar personagens"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
     func receberAPI(){
         api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
             self.arrayPersonagens = personagens
@@ -94,11 +107,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
                 self.receberAPI()
             }
-            
+            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
+                let favoritos = Favoritos()
+                self.navigationController?.pushViewController(favoritos, animated: true)
+            }
             let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
             
             alert.addAction(botaoRefazChamada)
-            //alert.addAction(botaoLevaParaFavoritos)
+            alert.addAction(botaoLevaParaFavoritos)
             alert.addAction(botaoEntendi)
             
             self.present(alert, animated: true, completion: nil)
@@ -112,9 +128,9 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell
         
-        cell?.lblNome.text = self.arrayPersonagens[indexPath.row].name
-        cell?.lblStatus.text = self.arrayPersonagens[indexPath.row].status
-        cell?.lblSpecies.text = self.arrayPersonagens[indexPath.row].species
+        cell?.lblNome.text      = self.arrayPersonagens[indexPath.row].name
+        cell?.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
+        cell?.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
         
         if let image = self.arrayPersonagens[indexPath.row].image{
             let url = URL(string: image)

@@ -9,10 +9,11 @@ import UIKit
 
 class CelulaTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var lblNome : UILabel!
-    @IBOutlet weak var img : UIImageView!
-    @IBOutlet weak var lblStatus: UILabel!
-    @IBOutlet weak var lblSpecies: UILabel!
+    @IBOutlet weak var lblNome :    UILabel!
+    @IBOutlet weak var img :        UIImageView!
+    @IBOutlet weak var lblStatus:   UILabel!
+    @IBOutlet weak var lblSpecies:  UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
