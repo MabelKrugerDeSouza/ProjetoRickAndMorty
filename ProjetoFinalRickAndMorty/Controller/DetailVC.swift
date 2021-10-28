@@ -61,16 +61,13 @@ extension DetailVC: UITableViewDataSource {
             cell.textLabel?.text       = "Espécie:"
             cell.detailTextLabel?.text = species
         case 3:
-            guard let sex = personagemTocado.status else { return UITableViewCell() }
+            guard let status = personagemTocado.status else { return UITableViewCell() }
             cell.textLabel?.text       = "Status:"
-            cell.detailTextLabel?.text = sex
+            cell.detailTextLabel?.text = status
         case 4:
-            guard let wikilink = personagemTocado.genrer else { return UITableViewCell() }
+            guard let genrer = personagemTocado.gender else { return UITableViewCell() }
             cell.textLabel?.text            = "Genero:"
-            cell.detailTextLabel?.text      = wikilink
-            cell.detailTextLabel?.textColor = .blue
-            cell.accessoryType              = .disclosureIndicator
-            cell.selectionStyle             = .blue
+            cell.detailTextLabel?.text      = genrer
         case 5:
             cell.textLabel?.text            = "Adicionar aos favoritos"
             cell.accessoryType              = .disclosureIndicator

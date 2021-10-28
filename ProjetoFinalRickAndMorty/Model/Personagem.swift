@@ -10,7 +10,7 @@ import Foundation
 struct Personagem: Codable{
     var name    : String?
     var status  : String?
-    var genrer  : String?
+    var gender  : String?
     var image   : String?
     var species : String?
 }
