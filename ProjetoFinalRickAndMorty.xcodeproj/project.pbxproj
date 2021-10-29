@@ -21,7 +21,7 @@
 		57DBD44C272B263D001EFFFD /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD44B272B263D001EFFFD /* ImageViewCell.swift */; };
 		57DBD44F272B26AC001EFFFD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57DBD44E272B26AC001EFFFD /* SnapKit */; };
 		57DBD454272B2A59001EFFFD /* Favoritos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57DBD453272B2A59001EFFFD /* Favoritos.storyboard */; };
-		57DBD456272B2AEF001EFFFD /* Favoritos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD455272B2AEF001EFFFD /* Favoritos.swift */; };
+		57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */; };
 		57F7B8D02728A091007C008E /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F7B8CF2728A091007C008E /* DetailVC.swift */; };
 		57F7B8D32728E8EF007C008E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 57F7B8D22728E8EF007C008E /* Kingfisher */; };
 		57F7B908272AC8F2007C008E /* RickAndMorty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 57F7B906272AC8F2007C008E /* RickAndMorty.xcdatamodeld */; };
@@ -45,7 +45,7 @@
 		5781F8D3272896E900B148BC /* Resulta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resulta.swift; sourceTree = "<group>"; };
 		57DBD44B272B263D001EFFFD /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		57DBD453272B2A59001EFFFD /* Favoritos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favoritos.storyboard; sourceTree = "<group>"; };
-		57DBD455272B2AEF001EFFFD /* Favoritos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favoritos.swift; sourceTree = "<group>"; };
+		57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosVC.swift; sourceTree = "<group>"; };
 		57F7B8CF2728A091007C008E /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		57F7B907272AC8F2007C008E /* RickAndMorty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RickAndMorty.xcdatamodel; sourceTree = "<group>"; };
 		57F7B909272AD0E7007C008E /* DataBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseController.swift; sourceTree = "<group>"; };
@@ -84,13 +84,13 @@
 		5781F8AD272891A900B148BC /* ProjetoFinalRickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
-				5781F8C8272892EF00B148BC /* Model */,
-				5781F8C9272892F900B148BC /* View */,
-				5781F8CA2728930500B148BC /* Controller */,
 				5781F8AE272891A900B148BC /* AppDelegate.swift */,
 				5781F8B7272891AD00B148BC /* Assets.xcassets */,
 				5781F8BC272891AD00B148BC /* Info.plist */,
 				57F7B906272AC8F2007C008E /* RickAndMorty.xcdatamodeld */,
+				5781F8C8272892EF00B148BC /* Model */,
+				5781F8C9272892F900B148BC /* View */,
+				5781F8CA2728930500B148BC /* Controller */,
 			);
 			path = ProjetoFinalRickAndMorty;
 			sourceTree = "<group>";
@@ -131,8 +131,8 @@
 			children = (
 				5781F8B2272891A900B148BC /* ViewController.swift */,
 				57F7B8CF2728A091007C008E /* DetailVC.swift */,
+				57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */,
 				57F7B909272AD0E7007C008E /* DataBaseController.swift */,
-				57DBD455272B2AEF001EFFFD /* Favoritos.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 				5781F8C4272891E200B148BC /* CelulaTableViewCell.swift in Sources */,
 				57F7B8D02728A091007C008E /* DetailVC.swift in Sources */,
 				5781F8AF272891A900B148BC /* AppDelegate.swift in Sources */,
-				57DBD456272B2AEF001EFFFD /* Favoritos.swift in Sources */,
+				57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */,
 				5781F8D02728957300B148BC /* API.swift in Sources */,
 				5781F8CE2728953800B148BC /* EnumPoints.swift in Sources */,
 			);

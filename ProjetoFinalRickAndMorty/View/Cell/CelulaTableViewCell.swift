@@ -13,6 +13,7 @@ class CelulaTableViewCell: UITableViewCell {
     @IBOutlet weak var img :        UIImageView!
     @IBOutlet weak var lblStatus:   UILabel!
     @IBOutlet weak var lblSpecies:  UILabel!
+    @IBOutlet weak var btnFavorito: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

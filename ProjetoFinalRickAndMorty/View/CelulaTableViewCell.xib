@@ -24,41 +24,41 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nome" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRp-YS-J4a">
-                        <rect key="frame" x="101" y="7" width="252" height="65"/>
+                        <rect key="frame" x="101" y="7" width="230" height="67"/>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fe1-js-2lb">
-                        <rect key="frame" x="101" y="72.5" width="93" height="20.5"/>
+                        <rect key="frame" x="101" y="72" width="80" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20.5" id="0UN-KP-Y67"/>
-                            <constraint firstAttribute="width" constant="93" id="bbJ-Ix-HQt"/>
+                            <constraint firstAttribute="width" constant="80" id="bbJ-Ix-HQt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="species" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-ja-BsC">
-                        <rect key="frame" x="189" y="67" width="155" height="30"/>
+                        <rect key="frame" x="183" y="67" width="183" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="-5" id="2YT-bL-Tz8"/>
-                    <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="0.5" id="5cK-6P-kkb"/>
-                    <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="0.5" id="8nb-Yn-9Fi"/>
+                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="2" id="2YT-bL-Tz8"/>
+                    <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="-2" id="5cK-6P-kkb"/>
+                    <constraint firstItem="fe1-js-2lb" firstAttribute="top" secondItem="hRp-YS-J4a" secondAttribute="bottom" constant="-2" id="8nb-Yn-9Fi"/>
                     <constraint firstItem="gBw-ja-BsC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="67" id="AZe-xH-MOa"/>
                     <constraint firstItem="ixF-F4-8nF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="EqJ-J2-CVf"/>
-                    <constraint firstAttribute="trailing" secondItem="gBw-ja-BsC" secondAttribute="trailing" constant="29" id="OxC-81-9aQ"/>
-                    <constraint firstAttribute="trailing" secondItem="hRp-YS-J4a" secondAttribute="trailing" constant="20" id="QNz-lW-7ku"/>
-                    <constraint firstAttribute="bottom" secondItem="fe1-js-2lb" secondAttribute="bottom" constant="8" id="Vlu-7W-2zw"/>
+                    <constraint firstAttribute="trailing" secondItem="gBw-ja-BsC" secondAttribute="trailing" constant="7" id="OxC-81-9aQ"/>
+                    <constraint firstAttribute="trailing" secondItem="hRp-YS-J4a" secondAttribute="trailing" constant="42" id="QNz-lW-7ku"/>
+                    <constraint firstAttribute="bottom" secondItem="fe1-js-2lb" secondAttribute="bottom" constant="8.5" id="Vlu-7W-2zw"/>
                     <constraint firstItem="ixF-F4-8nF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="dKV-iS-2T9"/>
                     <constraint firstItem="hRp-YS-J4a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="gxk-7A-nsw"/>
                     <constraint firstAttribute="bottom" secondItem="ixF-F4-8nF" secondAttribute="bottom" constant="8" id="mCk-zC-eiM"/>
-                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="-5" id="mZT-Kc-WrO"/>
+                    <constraint firstItem="gBw-ja-BsC" firstAttribute="leading" secondItem="fe1-js-2lb" secondAttribute="trailing" constant="2" id="mZT-Kc-WrO"/>
                     <constraint firstItem="fe1-js-2lb" firstAttribute="leading" secondItem="ixF-F4-8nF" secondAttribute="trailing" constant="8" id="oIL-ee-AlE"/>
                     <constraint firstItem="hRp-YS-J4a" firstAttribute="leading" secondItem="ixF-F4-8nF" secondAttribute="trailing" constant="8" id="qgi-k3-tjW"/>
                     <constraint firstAttribute="bottom" secondItem="gBw-ja-BsC" secondAttribute="bottom" constant="4" id="x6J-XO-WrY"/>
@@ -72,7 +72,7 @@
                 <outlet property="lblSpecies" destination="gBw-ja-BsC" id="Omd-0t-c2E"/>
                 <outlet property="lblStatus" destination="fe1-js-2lb" id="aMN-8l-2q9"/>
             </connections>
-            <point key="canvasLocation" x="176.08695652173915" y="98.772321428571431"/>
+            <point key="canvasLocation" x="23.913043478260871" y="41.852678571428569"/>
         </tableViewCell>
     </objects>
 </document>

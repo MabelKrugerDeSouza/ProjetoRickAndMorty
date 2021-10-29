@@ -26,8 +26,6 @@ class DetailVC: UIViewController{
     
         self.title = personagemTocado.name
         self.view.addSubview(detailPersonagem)
-        
-        
     }
 }
 
@@ -53,8 +51,8 @@ extension DetailVC: UITableViewDataSource {
             
         case 1:
             guard let name = personagemTocado.name else { return UITableViewCell() }
-            cell.textLabel?.text       = "Nome:"
             cell.detailTextLabel?.text = name
+            cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
             
         case 2:
             guard let species = personagemTocado.species else { return UITableViewCell() }
@@ -66,12 +64,11 @@ extension DetailVC: UITableViewDataSource {
             cell.detailTextLabel?.text = status
         case 4:
             guard let genrer = personagemTocado.gender else { return UITableViewCell() }
-            cell.textLabel?.text            = "Genero:"
-            cell.detailTextLabel?.text      = genrer
+            cell.textLabel?.text        = "Genero:"
+            cell.detailTextLabel?.text  = genrer
         case 5:
-            cell.textLabel?.text            = "Adicionar aos favoritos"
-            cell.accessoryType              = .disclosureIndicator
-
+            cell.textLabel?.text = "Adicionar aos favoritos"
+            cell.accessoryType = .disclosureIndicator
         default:
             return UITableViewCell()
         }

@@ -7,5 +7,5 @@
 
 import UIKit
 
-class Favoritos: UIViewController{
+class FavoritosVC: UIViewController{
 }

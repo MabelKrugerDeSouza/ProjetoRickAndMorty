@@ -18,6 +18,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
+    var favoritos: Bool = false
     
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
@@ -41,8 +42,29 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.receberAPI()
-        configureSearchBar()
+        self.configureSearchBar()
+        self.createRightBarButton()
+    }
+    
+    func populaArrayDeElefantesAtualizaTableView() {
+            
+    }
+    
+    
+    func createRightBarButton() {
+        let heartImage = UIImage(systemName: "heart.fill")
+        
+        let rightButton = UIBarButtonItem(image: heartImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(getFavoritos))
+        rightButton.tintColor = .red
+        
+        self.navigationItem.rightBarButtonItem = rightButton
+    }
+
+    
+    @objc func getFavoritos(){
+        let vc = ViewController()
+        vc.favoritos = true
+        self.show(vc, sender: nil)
     }
     
     func configureSearchBar() {
@@ -51,24 +73,25 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
+    
     func receberAPI(){
         api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
             self.arrayPersonagens = personagens
             DispatchQueue.main.async {
+                self.currentPage += 1
                 self.tabelaPersonagem.reloadData()
             }
         } errorR: { errorR in
             switch errorR{
             case .emptyArray:
-                self.mostraAlerta(mensagem: "Deu error")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
             case .notFound:
-                self.mostraAlerta(mensagem: "Sem internet")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
             default:
                 break;
             }
         }
     }
-    
     
     func createSpinnerFooter()-> UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -94,13 +117,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                     self.currentPage += 1
                     self.tabelaPersonagem.reloadData()
                 }
-            } errorR: { errorS in
-                // error
+            } errorR: { errorR in
+                switch errorR{
+                case .emptyArray:
+                    self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
+                case .notFound:
+                    self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
+                default:
+                    break;
+                }
             }
         }
     }
     
-    func mostraAlerta(mensagem: String) {
+    func mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
@@ -108,7 +138,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 self.receberAPI()
             }
             let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
-                let favoritos = Favoritos()
+                let favoritos = FavoritosVC()
                 self.navigationController?.pushViewController(favoritos, animated: true)
             }
             let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
@@ -127,10 +157,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell
-        
+        cell?.accessoryType     = .disclosureIndicator
         cell?.lblNome.text      = self.arrayPersonagens[indexPath.row].name
         cell?.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
         cell?.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
+        
         
         if let image = self.arrayPersonagens[indexPath.row].image{
             let url = URL(string: image)
