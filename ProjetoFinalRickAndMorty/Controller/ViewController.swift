@@ -15,9 +15,9 @@ import SwiftUI
 class ViewController: UIViewController, UIScrollViewDelegate {
     
     var arrayPersonagens: [Personagem] = []
-    var api = API()
-    let reuseIdentifier = "Celula"
-    var currentPage = 1
+    var api              = API()
+    let reuseIdentifier  = "Celula"
+    var currentPage      = 1
     let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -49,11 +49,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.createRightBarButton()
     }
     
-    func populaArrayDeElefantesAtualizaTableView() {
-            
-    }
-    
-    
+    //MARK: Funcoes
     func createRightBarButton() {
         let heartImage = UIImage(systemName: "heart.fill")
         
@@ -166,6 +162,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
+
+//MARK: Extensions 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell

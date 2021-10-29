@@ -18,25 +18,25 @@ class API{
         if pagination{
             self.isPaginating = true
         }
-        let configURL: URLSessionConfiguration = .default
+        let configURL : URLSessionConfiguration = .default
         let sessionURL: URLSession = URLSession(configuration: configURL)
             
         guard let url: URL = URL(string: urlString + String(page)) else{return}
         
         var urlRequest: URLRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "\(method)"
+        urlRequest.httpMethod      = "\(method)"
         
         let task = sessionURL.dataTask(with: urlRequest, completionHandler: { (result, urlResponse, error) in
             var statusCode: Int = 0
             
             if let response = urlResponse as? HTTPURLResponse{
-                statusCode = response.statusCode
+                statusCode  = response.statusCode
                 print(statusCode)
             }
             guard let data = result else{return}
             
             do {
-                let decoder: JSONDecoder = JSONDecoder()
+                let decoder: JSONDecoder  = JSONDecoder()
                 let deconderData: Resulta = try decoder.decode(Resulta.self, from: data)
                 if pagination{
                     self.isPaginating = false

@@ -30,6 +30,8 @@ class DetailVC: UIViewController{
         self.view.addSubview(detailPersonagem)
     }
     
+  
+    //MARK: funcoes
     func verificaPersonagemNoBanco( nomePersonagem: String) -> Bool{
         var retorno: Bool = true
         let context = DataBaseController.persistentContainer.viewContext
@@ -50,9 +52,10 @@ class DetailVC: UIViewController{
     }
 }
 
+//MARK: extension DataSource
 extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,6 +78,7 @@ extension DetailVC: UITableViewDataSource {
             cell.detailTextLabel?.text = name
             cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
             
+            
         case 2:
             guard let species = personagemTocado.species else { return UITableViewCell() }
             cell.textLabel?.text       = "Espécie:"
@@ -92,7 +96,7 @@ extension DetailVC: UITableViewDataSource {
                 cell.textLabel?.text = "Adicionar aos favoritos"
                 cell.accessoryType = .disclosureIndicator
             }
-        default:
+            default:
             return UITableViewCell()
         }
 
@@ -100,6 +104,8 @@ extension DetailVC: UITableViewDataSource {
     }
 }
 
+
+//MARK: Extension delegate
 extension DetailVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -131,6 +137,7 @@ extension DetailVC: UITableViewDelegate{
     
     private func savePersonagem(with newPersonagem: Personagem, context: NSManagedObjectContext) {
 
+        // aqui ele esta verificando os parametros
             let personagem = Personagens(context: context)
             personagem.image = newPersonagem.image
             personagem.name = newPersonagem.name
@@ -138,6 +145,7 @@ extension DetailVC: UITableViewDelegate{
             personagem.gender = newPersonagem.gender
             personagem.species = newPersonagem.species
            
+        // e aqui salvando eles no banco
             DataBaseController.saveContext { [weak self] result in
                 guard self != nil else { return }
                 switch result {
