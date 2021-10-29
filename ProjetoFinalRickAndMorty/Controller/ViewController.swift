@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 #if DEBUG
 import SwiftUI
 #endif
@@ -21,8 +22,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    var favoritos: Bool = false
-    
+
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
         
@@ -62,11 +62,21 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         self.navigationItem.rightBarButtonItem = rightButton
     }
+    
+    func getFavoritesFromDatabase() -> [Personagens]{
+        var retorno: [Personagens] = []
+            do {
+                retorno = try DataBaseController.persistentContainer.viewContext.fetch(Personagens.fetchRequest())
+            } catch {
+                print("Nao consegui trazer as informaçoes do banco de dados")
+            }
+          return retorno
+        }
 
     
     @objc func getFavoritos(){
-        let vc = ViewController()
-        vc.favoritos = true
+        let vc = FavoritosVC()
+        vc.personagensFavoritos = self.getFavoritesFromDatabase()
         self.show(vc, sender: nil)
     }
     
