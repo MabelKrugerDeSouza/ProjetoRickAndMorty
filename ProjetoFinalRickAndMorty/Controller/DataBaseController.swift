@@ -23,15 +23,15 @@ class DataBaseController{
 
     // MARK: - Core Data Saving support
 
-   static func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    static func saveContext(completion: @escaping (Result<Void, Error>) -> Void) {
+            let context = persistentContainer.viewContext
+            if context.hasChanges {
+                do {
+                    try context.save()
+                    completion(Result.success(()))
+                } catch let error {
+                    completion(Result.failure(error))
+                }
             }
         }
-    }
 }

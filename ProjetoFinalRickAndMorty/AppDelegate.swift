@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        DataBaseController.saveContext()
+        DataBaseController.saveContext { _ in }
     }
 }
 

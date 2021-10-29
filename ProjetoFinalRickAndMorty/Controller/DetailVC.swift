@@ -6,6 +6,7 @@
 //
 import UIKit
 import Kingfisher
+import CoreData
 
 class DetailVC: UIViewController{
     
@@ -16,6 +17,7 @@ class DetailVC: UIViewController{
         var detail              = UITableView()
         detail.frame            = self.view.bounds
         detail.dataSource       = self
+        detail.delegate         = self
         detail.separatorStyle   = .none
 
         return detail
@@ -27,6 +29,8 @@ class DetailVC: UIViewController{
         self.title = personagemTocado.name
         self.view.addSubview(detailPersonagem)
     }
+    
+    
 }
 
 extension DetailVC: UITableViewDataSource {
@@ -75,4 +79,58 @@ extension DetailVC: UITableViewDataSource {
 
         return cell
     }
+}
+
+extension DetailVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let context = DataBaseController.persistentContainer.viewContext
+        
+
+                    do {
+                        guard let name = personagemTocado.name else {return}
+
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
+                        fetchRequest.predicate =  NSPredicate(format: "name =%@", name)
+                        let fetchedPersonagens = try context.fetch(fetchRequest)
+                        print(fetchedPersonagens.count)
+
+                        if fetchedPersonagens.count == 0 {
+
+                            self.savePersonagem(with: self.personagemTocado, context: context)
+
+                        } else {
+
+                            self.displayAlert(with: "Favoritos",
+                                              message: "O personagem \(self.personagemTocado.name!) já está favoritado")
+                        }
+                    } catch let error {
+                        print(error)
+                    }
+    }
+    
+    private func savePersonagem(with newPersonagem: Personagem, context: NSManagedObjectContext) {
+
+            let personagem = Personagens(context: context)
+            personagem.image = newPersonagem.image
+            personagem.name = newPersonagem.name
+            personagem.status = newPersonagem.status
+            personagem.gender = newPersonagem.gender
+            personagem.species = newPersonagem.species
+           
+            DataBaseController.saveContext { [weak self] result in
+                guard self != nil else { return }
+                switch result {
+                case .success:
+                    self?.displayAlert(
+                        with: "Favoritos",
+                        message: "O personagem foi adicionado aos favoritos com sucesso.")
+                case .failure(let error):
+                    print(error)
+                    self?.displayAlert(
+                        with: "ERRO",
+                        message: "O personagem não foi adicionado aos favoritos. Tente novamente.")
+                }
+            }
+        }
 }

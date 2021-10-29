@@ -7,6 +7,9 @@
 
 import UIKit
 import Kingfisher
+#if DEBUG
+import SwiftUI
+#endif
 
 class ViewController: UIViewController, UIScrollViewDelegate {
     
@@ -194,3 +197,13 @@ extension ViewController: UITableViewDelegate{
         self.show(detail, sender: nil)
     }
 }
+
+#if DEBUG
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerPreview {
+            ViewController()
+        }
+    }
+}
+#endif
