@@ -108,7 +108,7 @@ extension DetailVC: UITableViewDataSource {
 //MARK: Extension delegate
 extension DetailVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let context = DataBaseController.persistentContainer.viewContext
         
 

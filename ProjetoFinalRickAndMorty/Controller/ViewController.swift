@@ -83,24 +83,30 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         definesPresentationContext = true
     }
     
-    func receberAPI(){
-        api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
-            self.arrayPersonagens = personagens
-            DispatchQueue.main.async {
-                self.currentPage += 1
-                self.tabelaPersonagem.reloadData()
-            }
-        } errorR: { errorR in
-            switch errorR{
-            case .emptyArray:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
-            case .notFound:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
-            default:
-                break;
-            }
-        }
+    convenience init(api: API){
+        self.init()
+        self.api = api
     }
+
+    
+//    func receberAPI(){
+//        api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
+//            self.arrayPersonagens = personagens
+//            DispatchQueue.main.async {
+//                self.currentPage += 1
+//                self.tabelaPersonagem.reloadData()
+//            }
+//        } errorR: { errorR in
+//            switch errorR{
+//            case .emptyArray:
+//                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
+//            case .notFound:
+//                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
+//            default:
+//                break;
+//            }
+//        }
+//    }
     
     func createSpinnerFooter()-> UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -144,7 +150,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
             let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
-                self.receberAPI()
+                self.api
             }
             let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
                 self.getFavoritos()
