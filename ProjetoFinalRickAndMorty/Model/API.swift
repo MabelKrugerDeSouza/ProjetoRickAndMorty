@@ -44,8 +44,8 @@ class API{
                 
                 switch statusCode {
                 case 200:
-                    //response(deconderData.results)
-                    errorR(ErrorAPI.notFound)
+                    response(deconderData.results)
+                    //errorR(ErrorAPI.notFound)
                 case 404:
                     errorR(ErrorAPI.notFound)
                     return

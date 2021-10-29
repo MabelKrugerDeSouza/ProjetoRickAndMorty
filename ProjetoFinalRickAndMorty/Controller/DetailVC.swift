@@ -30,7 +30,24 @@ class DetailVC: UIViewController{
         self.view.addSubview(detailPersonagem)
     }
     
-    
+    func verificaPersonagemNoBanco( nomePersonagem: String) -> Bool{
+        var retorno: Bool = true
+        let context = DataBaseController.persistentContainer.viewContext
+                    do {
+                        //esta fazendo um request na entidade para ver se aquele personagem ja existe, buscando pelo nome
+                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
+                        fetchRequest.predicate =  NSPredicate(format: "name =%@", nomePersonagem)
+                        let fetchedPersonagens = try context.fetch(fetchRequest)
+                        print(fetchedPersonagens.count)
+
+                        if fetchedPersonagens.count == 0 {
+                            retorno = false
+                        }
+                    } catch let error {
+                        print(error)
+                    }
+        return retorno
+    }
 }
 
 extension DetailVC: UITableViewDataSource {
@@ -71,8 +88,10 @@ extension DetailVC: UITableViewDataSource {
             cell.textLabel?.text        = "Genero:"
             cell.detailTextLabel?.text  = genrer
         case 5:
-            cell.textLabel?.text = "Adicionar aos favoritos"
-            cell.accessoryType = .disclosureIndicator
+            if !verificaPersonagemNoBanco(nomePersonagem: personagemTocado.name!){
+                cell.textLabel?.text = "Adicionar aos favoritos"
+                cell.accessoryType = .disclosureIndicator
+            }
         default:
             return UITableViewCell()
         }
@@ -90,6 +109,7 @@ extension DetailVC: UITableViewDelegate{
                     do {
                         guard let name = personagemTocado.name else {return}
 
+                        //esta fazendo um request na entidade para ver se aquele personagem ja existe, buscando pelo nome
                         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
                         fetchRequest.predicate =  NSPredicate(format: "name =%@", name)
                         let fetchedPersonagens = try context.fetch(fetchRequest)

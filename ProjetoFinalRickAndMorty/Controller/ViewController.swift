@@ -151,8 +151,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 self.receberAPI()
             }
             let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
-                let favoritos = FavoritosVC()
-                self.navigationController?.pushViewController(favoritos, animated: true)
+                self.getFavoritos()
             }
             let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
             

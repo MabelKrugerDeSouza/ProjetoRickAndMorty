@@ -60,14 +60,10 @@ extension FavoritosVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         let detail = DetailVC()
         
-        
-        
-        
-        
         var personagem = Personagem()
+        personagem.image = personagensFavoritos[indexPath.row].image
         personagem.name = personagensFavoritos[indexPath.row].name
         detail.personagemTocado = personagem
-        //detail.tableView(DetailVC, cellForRowAt: 6)
         self.show(detail, sender: nil)
     }
 }
