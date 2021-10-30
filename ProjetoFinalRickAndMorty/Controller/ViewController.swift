@@ -15,9 +15,10 @@ import SwiftUI
 class ViewController: UIViewController, UIScrollViewDelegate {
     
     var arrayPersonagens: [Personagem] = []
-    var api              = API()
+    //var api              = API()
+    var api: API?
     let reuseIdentifier  = "Celula"
-    var currentPage      = 1
+    var currentPage      = 0
     let searchController = UISearchController(searchResultsController: nil)
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -32,6 +33,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let nib = UINib(nibName: "CelulaTableViewCell", bundle: nil)
         tabela.register(nib, forCellReuseIdentifier: reuseIdentifier)
+        
+        
     
         return tabela
     }()
@@ -41,6 +44,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
         //self.tabelaPersonagem.backgroundColor = .green
+        self.carregaPersonagens()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,24 +93,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
 
     
-//    func receberAPI(){
-//        api.getPersonagens(urlString: api.setCharacter(), page: currentPage, method: .GET) { personagens in
-//            self.arrayPersonagens = personagens
-//            DispatchQueue.main.async {
-//                self.currentPage += 1
-//                self.tabelaPersonagem.reloadData()
-//            }
-//        } errorR: { errorR in
-//            switch errorR{
-//            case .emptyArray:
-//                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
-//            case .notFound:
-//                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
-//            default:
-//                break;
-//            }
-//        }
-//    }
+
     
     func createSpinnerFooter()-> UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
@@ -119,28 +106,38 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let position = scrollView.contentOffset.y
+        
+        guard let mApi = self.api else { return }
         if position > (tabelaPersonagem.contentSize.height-100-scrollView.frame.size.height){
-            guard !api.isPaginating else {
+            guard !mApi.isPaginating else {
                 return
             }
             self.tabelaPersonagem.tableFooterView = createSpinnerFooter()
-            api.getPersonagens(urlString: api.setCharacter(), page: currentPage, pagination: true, method: .GET) { personagens in
-                self.arrayPersonagens.append(contentsOf: personagens)
-                DispatchQueue.main.async {
-                    self.tabelaPersonagem.tableFooterView = nil
-                    self.currentPage += 1
-                    self.tabelaPersonagem.reloadData()
-                }
-            } errorR: { errorR in
-                switch errorR{
-                case .emptyArray:
-                    self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
-                case .notFound:
-                    self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
-                default:
-                    break;
-                }
+            
+            self.carregaPersonagens()
+           
+        }
+    }
+    
+    func carregaPersonagens(){
+        self.currentPage += 1
+        guard let mApi = self.api else { return }
+        mApi.getPersonagens(urlString: mApi.setCharacter(), page: currentPage, pagination: true, method: .GET) { personagens in
+            self.arrayPersonagens.append(contentsOf: personagens)
+            DispatchQueue.main.async {
+                self.tabelaPersonagem.tableFooterView = nil
+                self.tabelaPersonagem.reloadData()
+            }
+        } errorR: { errorR in
+            switch errorR{
+            case .emptyArray:
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
+            case .notFound:
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
+            default:
+                break;
             }
         }
     }
@@ -149,8 +146,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
+            guard let mApi = self.api else {return}
             let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
-                self.api
+                mApi
             }
             let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
                 self.getFavoritos()

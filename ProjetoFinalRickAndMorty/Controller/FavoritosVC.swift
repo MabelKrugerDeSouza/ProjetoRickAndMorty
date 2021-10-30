@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import CoreData
 
 class FavoritosVC: UIViewController{
     var personagensFavoritos: [Personagens] = []
@@ -24,7 +25,6 @@ class FavoritosVC: UIViewController{
         
         return favoritosPersonagens
     }()
-    
     override func viewDidLoad() {
             super.viewDidLoad()
         
@@ -79,6 +79,11 @@ extension FavoritosVC: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let personagemExcluido = self.personagensFavoritos[indexPath.row]
+        let context = DataBaseController.persistentContainer.viewContext
+        context.delete(personagemExcluido)
+        
         self.personagensFavoritos.remove(at: indexPath.row)
         favoritosPersonagens.reloadData() // aqui está fazendo aquele botão de delete
     }
