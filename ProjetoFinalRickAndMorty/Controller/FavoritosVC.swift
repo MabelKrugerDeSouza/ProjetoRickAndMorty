@@ -30,7 +30,7 @@ class FavoritosVC: UIViewController{
         
         favoritosPersonagens.frame = self.view.bounds
         
-        self.title = "Rick And Morty"
+        self.title = "Favotitos"
         self.view.addSubview(favoritosPersonagens)
         print(personagensFavoritos)
     }

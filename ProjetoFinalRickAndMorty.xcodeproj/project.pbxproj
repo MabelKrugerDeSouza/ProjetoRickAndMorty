@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57637B2C2730626C00AF1B07 /* Mensagens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637B2B2730626C00AF1B07 /* Mensagens.swift */; };
 		5781F8AF272891A900B148BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781F8AE272891A900B148BC /* AppDelegate.swift */; };
 		5781F8B3272891A900B148BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781F8B2272891A900B148BC /* ViewController.swift */; };
 		5781F8B8272891AD00B148BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5781F8B7272891AD00B148BC /* Assets.xcassets */; };
@@ -23,7 +24,6 @@
 		57DBD454272B2A59001EFFFD /* Favoritos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57DBD453272B2A59001EFFFD /* Favoritos.storyboard */; };
 		57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */; };
 		57DBD45A272C24B7001EFFFD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD459272C24B7001EFFFD /* UIViewController.swift */; };
-		57DBD45D272C2CBB001EFFFD /* ViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD45C272C2CBB001EFFFD /* ViewControllerPreview.swift */; };
 		57DBD467272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD466272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.swift */; };
 		57DBD46E272C912A001EFFFD /* ApiDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD46D272C912A001EFFFD /* ApiDouble.swift */; };
 		57F7B8D02728A091007C008E /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F7B8CF2728A091007C008E /* DetailVC.swift */; };
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57637B2B2730626C00AF1B07 /* Mensagens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mensagens.swift; sourceTree = "<group>"; };
 		5781F8AB272891A900B148BC /* ProjetoFinalRickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoFinalRickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5781F8AE272891A900B148BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5781F8B2272891A900B148BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +62,6 @@
 		57DBD453272B2A59001EFFFD /* Favoritos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favoritos.storyboard; sourceTree = "<group>"; };
 		57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosVC.swift; sourceTree = "<group>"; };
 		57DBD459272C24B7001EFFFD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
-		57DBD45C272C2CBB001EFFFD /* ViewControllerPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPreview.swift; sourceTree = "<group>"; };
 		57DBD464272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjetoFinalRickAndMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57DBD466272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjetoFinalRickAndMortyTests.swift; sourceTree = "<group>"; };
 		57DBD46D272C912A001EFFFD /* ApiDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiDouble.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		57DBD45B272C2CA1001EFFFD /* helper */ = {
 			isa = PBXGroup;
 			children = (
-				57DBD45C272C2CBB001EFFFD /* ViewControllerPreview.swift */,
+				57637B2B2730626C00AF1B07 /* Mensagens.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -311,13 +311,13 @@
 				57F7B90A272AD0E7007C008E /* DataBaseController.swift in Sources */,
 				57F7B90D272AD2E1007C008E /* ErrorAPI.swift in Sources */,
 				5781F8B3272891A900B148BC /* ViewController.swift in Sources */,
-				57DBD45D272C2CBB001EFFFD /* ViewControllerPreview.swift in Sources */,
 				5781F8D22728965C00B148BC /* HTTPMethod.swift in Sources */,
 				5781F8C4272891E200B148BC /* CelulaTableViewCell.swift in Sources */,
 				57F7B8D02728A091007C008E /* DetailVC.swift in Sources */,
 				5781F8AF272891A900B148BC /* AppDelegate.swift in Sources */,
 				57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */,
 				5781F8D02728957300B148BC /* API.swift in Sources */,
+				57637B2C2730626C00AF1B07 /* Mensagens.swift in Sources */,
 				5781F8CE2728953800B148BC /* EnumPoints.swift in Sources */,
 				57DBD45A272C24B7001EFFFD /* UIViewController.swift in Sources */,
 			);

@@ -18,10 +18,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var api: API?
     let reuseIdentifier  = "Celula"
     var currentPage      = 0
-    let searchController = UISearchController(searchResultsController: nil)
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
 
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
@@ -41,11 +37,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
         self.carregaPersonagens()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.configureSearchBar()
         self.createRightBarButton()
     }
     
@@ -74,15 +65,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let vc = FavoritosVC()
         vc.personagensFavoritos = self.getFavoritesFromDatabase()
         self.show(vc, sender: nil)
+        
+        if vc.personagensFavoritos.count <= 0 {
+            self.mostraAlertaComun(mensagem: "Sua tela de favoritos está vazia.")
+        }
     }
-    
-    func configureSearchBar() {
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Buscar personagens"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-    }
-    
     convenience init(api: API){
         self.init()
         self.api = api
@@ -126,11 +113,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         } errorR: { errorR in
             switch errorR{
             case .emptyArray:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error.")
             case .notFound:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado.")
             case .emptyResponse:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet.")
             default:
                 break;
             }
@@ -142,13 +129,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
             guard let mApi = self.api else {return}
-            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
+            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente.", style: .default) { _ in
                 mApi
             }
-            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
+            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos.", style: .default) { _ in
                 self.getFavoritos()
             }
-            let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            let botaoEntendi = UIAlertAction(title: "Cancelar.", style: .cancel, handler: nil)
             
             alert.addAction(botaoRefazChamada)
             alert.addAction(botaoLevaParaFavoritos)
@@ -157,6 +144,18 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.present(alert, animated: true, completion: nil)
         }
 
+    }
+    
+    func mostraAlertaComun(mensagem: String){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .alert)
+            
+            let botaoOK = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(botaoOK)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }
