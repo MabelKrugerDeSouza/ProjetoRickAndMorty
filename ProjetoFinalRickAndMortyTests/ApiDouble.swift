@@ -16,7 +16,7 @@ class ApiDouble: API {
     }
     override func getPersonagens(urlString: String,page: Int, pagination: Bool = false, method: HTTPMethods, response: @escaping([Personagem]) -> Void, errorR: @escaping (ErrorAPI) -> Void){
         chamadasApi += 1
-        //response([])// aqui ele ta pegando a func que esta chamando a api e colocando o numero de chamadas nela, que devera ser 1
+        
         let personagensRetorno: [Personagem] = []
         response(personagensRetorno)
     }

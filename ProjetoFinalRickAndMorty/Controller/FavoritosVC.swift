@@ -79,7 +79,8 @@ extension FavoritosVC: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        // essa funcao tem como responsabilidade deletar o personagem que está na tela do favoritos, assim que ela solicitar que ele seja deletado
+        // as informacoes do perosnagem iram sumir do banco 
         let personagemExcluido = self.personagensFavoritos[indexPath.row]
         let context = DataBaseController.persistentContainer.viewContext
         context.delete(personagemExcluido)

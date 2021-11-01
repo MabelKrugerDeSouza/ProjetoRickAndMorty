@@ -4,8 +4,6 @@
 //
 //  Created by Mabel Kruger de Souza on 28/10/21.
 //
-
-import Foundation
 import CoreData
 
 class DataBaseController{

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		57637B2C2730626C00AF1B07 /* Mensagens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57637B2B2730626C00AF1B07 /* Mensagens.swift */; };
 		5781F8AF272891A900B148BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781F8AE272891A900B148BC /* AppDelegate.swift */; };
 		5781F8B3272891A900B148BC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781F8B2272891A900B148BC /* ViewController.swift */; };
 		5781F8B8272891AD00B148BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5781F8B7272891AD00B148BC /* Assets.xcassets */; };
@@ -44,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		57637B2B2730626C00AF1B07 /* Mensagens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mensagens.swift; sourceTree = "<group>"; };
 		5781F8AB272891A900B148BC /* ProjetoFinalRickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoFinalRickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5781F8AE272891A900B148BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5781F8B2272891A900B148BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 		5781F8C9272892F900B148BC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				57DBD45B272C2CA1001EFFFD /* helper */,
 				5781F8C6272892BC00B148BC /* Cell */,
 				5781F8C3272891E200B148BC /* CelulaTableViewCell.xib */,
 				5781F8B9272891AD00B148BC /* LaunchScreen.storyboard */,
@@ -165,14 +162,6 @@
 				57DBD459272C24B7001EFFFD /* UIViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		57DBD45B272C2CA1001EFFFD /* helper */ = {
-			isa = PBXGroup;
-			children = (
-				57637B2B2730626C00AF1B07 /* Mensagens.swift */,
-			);
-			path = helper;
 			sourceTree = "<group>";
 		};
 		57DBD465272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests */ = {
@@ -317,7 +306,6 @@
 				5781F8AF272891A900B148BC /* AppDelegate.swift in Sources */,
 				57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */,
 				5781F8D02728957300B148BC /* API.swift in Sources */,
-				57637B2C2730626C00AF1B07 /* Mensagens.swift in Sources */,
 				5781F8CE2728953800B148BC /* EnumPoints.swift in Sources */,
 				57DBD45A272C24B7001EFFFD /* UIViewController.swift in Sources */,
 			);

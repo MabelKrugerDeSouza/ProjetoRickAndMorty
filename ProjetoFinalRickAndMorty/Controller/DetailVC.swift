@@ -35,7 +35,9 @@ class DetailVC: UIViewController{
         var retorno: Bool = true
         let context = DataBaseController.persistentContainer.viewContext
                     do {
-                        //esta fazendo um request na entidade para ver se aquele personagem ja existe, buscando pelo nome
+                        //esta fazendo um request na entidade para ver se aquele personagem ja existe na tela de favoritos, caso estiver no banco
+                        // o botao de adicionar ira sumir da tela
+                        
                         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
                         fetchRequest.predicate =  NSPredicate(format: "name =%@", nomePersonagem)
                         let fetchedPersonagens = try context.fetch(fetchRequest)
@@ -59,6 +61,7 @@ extension DetailVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        // as informacoes q devem aparecer quando estiver na pagina de detail
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
         cell.selectionStyle = .none
         cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
@@ -134,7 +137,7 @@ extension DetailVC: UITableViewDelegate{
     
     private func savePersonagem(with newPersonagem: Personagem, context: NSManagedObjectContext) {
 
-        // aqui ele esta verificando os parametros
+        // verificando se as informacoes que foram passadas estao de acordo com o entity do banco de dados
             let personagem = Personagens(context: context)
             personagem.image = newPersonagem.image
             personagem.name = newPersonagem.name
@@ -142,7 +145,8 @@ extension DetailVC: UITableViewDelegate{
             personagem.gender = newPersonagem.gender
             personagem.species = newPersonagem.species
            
-        // e aqui salvando eles no banco
+        // apos ter passado pela verificacao, ele vai salvar as informacoes do personagens que foi adicionado como favoritos e vai informar
+        // ao usuario se deu certo ou nao
             DataBaseController.saveContext { [weak self] result in
                 guard self != nil else { return }
                 switch result {

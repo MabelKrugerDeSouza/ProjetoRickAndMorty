@@ -8,9 +8,6 @@
 import UIKit
 import Kingfisher
 import CoreData
-#if DEBUG
-import SwiftUI
-#endif
 
 class ViewController: UIViewController, UIScrollViewDelegate {
     
@@ -41,6 +38,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
     //MARK: Funcoes
+    
+    
+    // criando o botao com o formato de coracao que vai guardar os personagens favoritos escolhidos pelo usuario
     func createRightBarButton() {
         let heartImage = UIImage(systemName: "heart.fill")
         
@@ -50,6 +50,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
+    
+    // funcao responsavel para retornar as informacoes dos personagens que estao armazenados no coreData
     func getFavoritesFromDatabase() -> [Personagens]{
         var retorno: [Personagens] = []
             do {
@@ -59,8 +61,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
           return retorno
         }
-
     
+    // Essa funcao está tendo como resposabilidade mandar os personagens que sao estao armazenados no coreData para a tela de favoritos e mostrando caso
+    // ela estiver vazia vai emitir um alerta para avisando
     @objc func getFavoritos(){
         let vc = FavoritosVC()
         vc.personagensFavoritos = self.getFavoritesFromDatabase()
@@ -70,6 +73,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.mostraAlertaComun(mensagem: "Sua tela de favoritos está vazia.")
         }
     }
+    
+    // aqui estamos passando a API como paramentro no View controller
     convenience init(api: API){
         self.init()
         self.api = api
@@ -85,8 +90,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return footerView
     }
     
+    
+    // sessa funcao sé executada sempre que o usuario rola a lista na tela e o if q está no meio da funcao teste se o usuario chegou no fim tela
+    // se ele chegou vai fazer uma solicitacao a API e vai mostrar o spinnner, se seria a bolinha de carremento no final da tela.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
         let position = scrollView.contentOffset.y
         
         guard let mApi = self.api else { return }
@@ -97,10 +104,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.tabelaPersonagem.tableFooterView = createSpinnerFooter()
             
             self.carregaPersonagens()
-           
         }
     }
     
+    // Nessa funcao é resposavel de carregar os personagens da API baseado no current page, que guarda a informacao da pagina atual.
     func carregaPersonagens(){
         self.currentPage += 1
         guard let mApi = self.api else { return }
@@ -124,6 +131,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    //Essa funcao vai mostrar um alerta de mensagem ao usuario quando ele estiver sem internet e vai pergutar se gostaria de ir a tela de favoritos.
     func mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
@@ -160,10 +168,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
 }
 
-//MARK: Extensions 
+//MARK: Extensions
+
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell
+        
+      let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell
         cell?.accessoryType     = .disclosureIndicator
         cell?.lblNome.text      = self.arrayPersonagens[indexPath.row].name
         cell?.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
@@ -201,13 +211,3 @@ extension ViewController: UITableViewDelegate{
         self.show(detail, sender: nil)
     }
 }
-
-#if DEBUG
-struct ViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewControllerPreview {
-            ViewController()
-        }
-    }
-}
-#endif
