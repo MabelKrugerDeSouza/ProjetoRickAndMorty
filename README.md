@@ -3,7 +3,7 @@
 Aplicativo desenvolvido para o desafio do projeto Maria Vai Com As Dev - Serasa 2021, que tem como objetivo criar um aplicativo IOS e utilizar os conhecimentos adquiridos durante o curso de Swift.
 
 
-#REQUISITOS
+# REQUISITOS
 
 1 - Fazer uma lista com scroll
 2 - Persistencia de dados com lista de favoritos
