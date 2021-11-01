@@ -15,7 +15,6 @@ import SwiftUI
 class ViewController: UIViewController, UIScrollViewDelegate {
     
     var arrayPersonagens: [Personagem] = []
-    //var api              = API()
     var api: API?
     let reuseIdentifier  = "Celula"
     var currentPage      = 0
@@ -33,8 +32,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let nib = UINib(nibName: "CelulaTableViewCell", bundle: nil)
         tabela.register(nib, forCellReuseIdentifier: reuseIdentifier)
-        
-        
     
         return tabela
     }()
@@ -43,7 +40,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
-        //self.tabelaPersonagem.backgroundColor = .green
         self.carregaPersonagens()
     }
     
@@ -92,9 +88,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.api = api
     }
 
-    
-
-    
     func createSpinnerFooter()-> UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
         let spinner = UIActivityIndicatorView()
@@ -136,6 +129,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
             case .notFound:
                 self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
+            case .emptyResponse:
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
             default:
                 break;
             }
@@ -165,7 +160,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
     
 }
-
 
 //MARK: Extensions 
 extension ViewController: UITableViewDataSource{

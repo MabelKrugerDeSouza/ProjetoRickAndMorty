@@ -33,7 +33,11 @@ class API{
                 statusCode  = response.statusCode
                 print(statusCode)
             }
-            guard let data = result else{return}
+            
+            guard let data = result else{
+                errorR(ErrorAPI.emptyResponse)
+                return
+            }
             
             do {
                 let decoder: JSONDecoder  = JSONDecoder()
@@ -44,8 +48,8 @@ class API{
                 
                 switch statusCode {
                 case 200:
-                    response(deconderData.results)
-                    //errorR(ErrorAPI.notFound)
+                   response(deconderData.results)
+                   // errorR(ErrorAPI.notFound)
                 case 404:
                     errorR(ErrorAPI.notFound)
                     return

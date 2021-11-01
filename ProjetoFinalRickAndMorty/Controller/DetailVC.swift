@@ -29,7 +29,6 @@ class DetailVC: UIViewController{
         self.title = personagemTocado.name
         self.view.addSubview(detailPersonagem)
     }
-    
   
     //MARK: funcoes
     func verificaPersonagemNoBanco( nomePersonagem: String) -> Bool{
@@ -78,7 +77,6 @@ extension DetailVC: UITableViewDataSource {
             cell.detailTextLabel?.text = name
             cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
             
-            
         case 2:
             guard let species = personagemTocado.species else { return UITableViewCell() }
             cell.textLabel?.text       = "Espécie:"
@@ -103,7 +101,6 @@ extension DetailVC: UITableViewDataSource {
         return cell
     }
 }
-
 
 //MARK: Extension delegate
 extension DetailVC: UITableViewDelegate{
