@@ -23,6 +23,7 @@ class FavoritosVC: UIViewController{
         let nib = UINib(nibName: "CelulaTableViewCell", bundle: nil)
         favoritosPersonagens.register(nib, forCellReuseIdentifier: reuseIdentifier)
         
+      
         return favoritosPersonagens
     }()
     override func viewDidLoad() {
@@ -37,6 +38,7 @@ class FavoritosVC: UIViewController{
             self.navigationController?.navigationBar.tintColor = .clear
             self.mostraAlertaFavoritos(mensagem: "Lista de favoritos está vazia")
         }
+        self.favoritosPersonagens.backgroundColor = UIColor(red: 216/255.0, green: 233/255.0, blue: 168.0/255.0, alpha: 1.0)
     }
     
     func mostraAlertaFavoritos(mensagem: String) {
@@ -61,7 +63,6 @@ extension FavoritosVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
         
-        cell.selectionStyle = .default
         cell.lblNome.text    = self.personagensFavoritos[indexPath.row].name
         cell.lblStatus.text  = self.personagensFavoritos[indexPath.row].status
         cell.lblSpecies.text = self.personagensFavoritos[indexPath.row].species
@@ -81,6 +82,8 @@ extension FavoritosVC: UITableViewDataSource{
                                         print(error.localizedDescription)
                                         }
                                 })
+            
+            cell.img.layer.cornerRadius  = 40.0
         }
         return cell
     }

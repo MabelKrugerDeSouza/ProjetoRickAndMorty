@@ -20,6 +20,7 @@ class DetailVC: UIViewController{
         detail.delegate         = self
         detail.separatorStyle   = .none
 
+       
         return detail
     }()
     
@@ -27,8 +28,8 @@ class DetailVC: UIViewController{
         super.viewDidLoad()
         self.view.addSubview(detailPersonagem)
         self.title = personagemTocado.name
-        
-        //self.detailPersonagem.backgroundColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
+        self.detailPersonagem.backgroundColor = UIColor(red: 216/255.0, green: 233/255.0, blue: 168.0/255.0, alpha: 1.0)
+
     }
   
     //MARK: funcoes
@@ -68,7 +69,7 @@ extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        cell.backgroundColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
+        cell.backgroundColor = UIColor(red: 187/255.0, green: 212/255.0, blue: 144.0/255.0, alpha: 1.0)
         cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         switch indexPath.row {
@@ -83,8 +84,7 @@ extension DetailVC: UITableViewDataSource {
         case 1:
             if let name = personagemTocado.name{
                 cell.detailTextLabel?.text = name
-                cell.detailTextLabel?.font =
-                UIFont.boldSystemFont(ofSize: 30.0)
+                cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
             }
             
         case 2:

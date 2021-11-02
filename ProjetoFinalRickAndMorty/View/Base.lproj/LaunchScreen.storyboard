@@ -24,10 +24,10 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.58162477739999996" green="0.78649491069999999" blue="0.27441955340000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.61960781048445135" green="0.78099548587623868" blue="0.48436813785007615" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="EV9-Sh-fQJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="279" id="PWb-lm-Bax"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EV9-Sh-fQJ" secondAttribute="bottom" constant="310" id="e8a-hS-Hdz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EV9-Sh-fQJ" secondAttribute="bottom" constant="310" id="Txi-iJ-Hs7"/>
                             <constraint firstItem="EV9-Sh-fQJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qpG-MT-I8R"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EV9-Sh-fQJ" secondAttribute="trailing" constant="20" id="zQq-J8-6Rb"/>
                         </constraints>

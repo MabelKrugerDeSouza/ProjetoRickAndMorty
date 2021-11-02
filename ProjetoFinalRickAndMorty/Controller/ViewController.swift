@@ -36,10 +36,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(tabelaPersonagem)
         self.carregaPersonagens()
         self.createRightBarButton()
-        navigationController?.navigationBar.tintColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
+        self.tabelaPersonagem.backgroundColor = UIColor(red: 216/255.0, green: 233/255.0, blue: 168.0/255.0, alpha: 1.0)
     }
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.tintColor = .darkText
+        navigationController?.navigationBar.tintColor = .black
         }
     
     //MARK: Funcoes
@@ -67,13 +67,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         let vc = FavoritosVC()
         vc.personagensFavoritos = self.getFavoritesFromDatabase()
         self.show(vc, sender: nil)
-        
-//        if vc.personagensFavoritos.count <= 0 {
-//            self.displayAlert(
-//                with: "Lista Favoritos",
-//                message: "Lista de favoritos está vazia.")
-//        }
-        
     }
     
     convenience init(api: API){
@@ -156,8 +149,8 @@ extension ViewController: UITableViewDataSource{
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
+        
         cell.accessoryType     = .disclosureIndicator
-        cell.selectionStyle    = .none
         cell.lblNome.text      = self.arrayPersonagens[indexPath.row].name
         cell.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
         cell.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
@@ -178,6 +171,7 @@ extension ViewController: UITableViewDataSource{
                                         print(error.localizedDescription)
                                         }
                                 })
+            cell.img.layer.cornerRadius  = 40.0
         }
        return cell
     }
