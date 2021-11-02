@@ -125,7 +125,7 @@ extension DetailVC: UITableViewDelegate{
                         } else {
 
                             self.displayAlert(with: "Favoritos",
-                                              message: "O personagem \(self.personagemTocado.name!) já está favoritado")
+                                              message: "O personagem \(self.personagemTocado.name!) já está favoritado.")
                         }
                     } catch let error {
                         print(error)

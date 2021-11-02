@@ -38,11 +38,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
         self.carregaPersonagens()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.configureSearchBar()
         self.createRightBarButton()
     }
     
@@ -74,16 +69,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         if vc.personagensFavoritos.count <= 0 {
             self.displayAlert(
-                with: "Favoritos",
+                with: "Lista Favoritos",
                 message: "Lista de favoritos está vazia.")
         }
-    }
-    
-    func configureSearchBar() {
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Buscar personagens"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
     }
     
     convenience init(api: API){
@@ -129,11 +117,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         } errorR: { errorR in
             switch errorR{
             case .emptyArray:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error.")
             case .notFound:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado.")
             case .emptyResponse:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet.")
             default:
                 break;
             }
@@ -145,13 +133,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
             guard let mApi = self.api else {return}
-            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
+            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente.", style: .default) { _ in
                 mApi
             }
-            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
+            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos.", style: .default) { _ in
                 self.getFavoritos()
             }
-            let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+            let botaoEntendi = UIAlertAction(title: "Cancelar.", style: .cancel, handler: nil)
             
             alert.addAction(botaoRefazChamada)
             alert.addAction(botaoLevaParaFavoritos)
