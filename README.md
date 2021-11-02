@@ -37,7 +37,7 @@ Nessa tela o usuário tem a opção de marcar um personagem como favorito. Essa 
 
 <h2><b>PROJETO</b></h2>
 
-O projeto foi desenvolvido com a arquitetura MVC e o codigo foi com code view (telas criadas na mao), os pagotes de independencia utilizados foram
+O projeto foi desenvolvido com a arquitetura MVC e o codigo foi com code view (telas criadas na mao), os pacotes de independencia utilizados foram
 KingFisher e SnapKit, já para ter a persistencia de dados foi utilizado o coredata
 
 
