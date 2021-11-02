@@ -26,8 +26,9 @@ class DetailVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.title = personagemTocado.name
+        
         self.view.addSubview(detailPersonagem)
+        self.title = personagemTocado.name
     }
   
     //MARK: funcoes
@@ -60,7 +61,7 @@ extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        cell.selectionStyle = .none
+        
         cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         switch indexPath.row {
@@ -73,26 +74,35 @@ extension DetailVC: UITableViewDataSource {
             return cellImage
             
         case 1:
-            guard let name = personagemTocado.name else { return UITableViewCell() }
-            cell.detailTextLabel?.text = name
-            cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
+            if let name = personagemTocado.name{
+                cell.detailTextLabel?.text = name
+                cell.detailTextLabel?.font =
+                UIFont.boldSystemFont(ofSize: 30.0)
+                
+            }
             
         case 2:
-            guard let species = personagemTocado.species else { return UITableViewCell() }
-            cell.textLabel?.text       = "Espécie:"
-            cell.detailTextLabel?.text = species
+            if let species = personagemTocado.species{
+                cell.textLabel?.text       = "Espécie:"
+                cell.detailTextLabel?.text = species
+            }
+            
         case 3:
-            guard let status = personagemTocado.status else { return UITableViewCell() }
-            cell.textLabel?.text       = "Status:"
-            cell.detailTextLabel?.text = status
+            if let status = personagemTocado.status {
+                cell.textLabel?.text       = "Status:"
+                cell.detailTextLabel?.text = status
+            }
+           
         case 4:
-            guard let genrer = personagemTocado.gender else { return UITableViewCell() }
-            cell.textLabel?.text        = "Genero:"
-            cell.detailTextLabel?.text  = genrer
+            if let genrer = personagemTocado.gender {
+                cell.textLabel?.text        = "Genero:"
+                cell.detailTextLabel?.text  = genrer
+            }
+            
         case 5:
             if !verificaPersonagemNoBanco(nomePersonagem: personagemTocado.name!){
                 cell.textLabel?.text = "Adicionar aos favoritos"
-                cell.accessoryType = .disclosureIndicator
+                cell.accessoryType   = .disclosureIndicator
             }
             default:
             return UITableViewCell()
@@ -108,7 +118,6 @@ extension DetailVC: UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         let context = DataBaseController.persistentContainer.viewContext
         
-
                     do {
                         guard let name = personagemTocado.name else {return}
 

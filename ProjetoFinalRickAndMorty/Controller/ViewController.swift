@@ -159,6 +159,7 @@ extension ViewController: UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
         cell.accessoryType     = .disclosureIndicator
+        cell.selectionStyle    = .none
         cell.lblNome.text      = self.arrayPersonagens[indexPath.row].name
         cell.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
         cell.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species

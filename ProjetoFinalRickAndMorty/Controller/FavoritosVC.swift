@@ -44,6 +44,7 @@ extension FavoritosVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
         
+        cell.selectionStyle = .default
         cell.lblNome.text    = self.personagensFavoritos[indexPath.row].name
         cell.lblStatus.text  = self.personagensFavoritos[indexPath.row].status
         cell.lblSpecies.text = self.personagensFavoritos[indexPath.row].species
