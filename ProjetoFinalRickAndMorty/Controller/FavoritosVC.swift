@@ -30,7 +30,7 @@ class FavoritosVC: UIViewController{
         
         favoritosPersonagens.frame = self.view.bounds
         
-        self.title = "Favotitos"
+        self.title = "Rick And Morty"
         self.view.addSubview(favoritosPersonagens)
         print(personagensFavoritos)
     }
@@ -79,11 +79,12 @@ extension FavoritosVC: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // essa funcao tem como responsabilidade deletar o personagem que está na tela do favoritos, assim que ela solicitar que ele seja deletado
-        // as informacoes do perosnagem iram sumir do banco 
+        
         let personagemExcluido = self.personagensFavoritos[indexPath.row]
         let context = DataBaseController.persistentContainer.viewContext
         context.delete(personagemExcluido)
+        
+        try! context.save()
         
         self.personagensFavoritos.remove(at: indexPath.row)
         favoritosPersonagens.reloadData() // aqui está fazendo aquele botão de delete

@@ -25,11 +25,10 @@ class ImageViewCell: UITableViewCell {
         
         if rounded {
             
-            self.uiiv_Image.layer.cornerRadius  = 30.0
+            self.uiiv_Image.layer.cornerRadius  = 125.0
             self.uiiv_Image.layer.borderWidth   = 1.0
-            self.uiiv_Image.layer.borderColor   = UIColor.gray.cgColor
-            self.uiiv_Image.layer.masksToBounds = true
-        }
+            self.uiiv_Image.layer.borderColor   = UIColor.black.cgColor
+            self.uiiv_Image.layer.masksToBounds = true        }
         
         self.uiiv_Image.contentMode = .scaleAspectFit
         self.uiiv_Image.kf.setImage(with: url,

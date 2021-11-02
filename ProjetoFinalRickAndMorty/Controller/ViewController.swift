@@ -15,6 +15,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     var api: API?
     let reuseIdentifier  = "Celula"
     var currentPage      = 0
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearchBarEmpty: Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
 
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
@@ -34,13 +38,15 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.title = "Rick And Morty"
         self.view.addSubview(tabelaPersonagem)
         self.carregaPersonagens()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.configureSearchBar()
         self.createRightBarButton()
     }
     
     //MARK: Funcoes
-    
-    
-    // criando o botao com o formato de coracao que vai guardar os personagens favoritos escolhidos pelo usuario
     func createRightBarButton() {
         let heartImage = UIImage(systemName: "heart.fill")
         
@@ -50,8 +56,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.navigationItem.rightBarButtonItem = rightButton
     }
     
-    
-    // funcao responsavel para retornar as informacoes dos personagens que estao armazenados no coreData
     func getFavoritesFromDatabase() -> [Personagens]{
         var retorno: [Personagens] = []
             do {
@@ -61,20 +65,27 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             }
           return retorno
         }
+
     
-    // Essa funcao está tendo como resposabilidade mandar os personagens que sao estao armazenados no coreData para a tela de favoritos e mostrando caso
-    // ela estiver vazia vai emitir um alerta para avisando
     @objc func getFavoritos(){
         let vc = FavoritosVC()
         vc.personagensFavoritos = self.getFavoritesFromDatabase()
         self.show(vc, sender: nil)
         
         if vc.personagensFavoritos.count <= 0 {
-            self.mostraAlertaComun(mensagem: "Sua tela de favoritos está vazia.")
+            self.displayAlert(
+                with: "Favoritos",
+                message: "Lista de favoritos está vazia.")
         }
     }
     
-    // aqui estamos passando a API como paramentro no View controller
+    func configureSearchBar() {
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Buscar personagens"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
     convenience init(api: API){
         self.init()
         self.api = api
@@ -90,10 +101,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         return footerView
     }
     
-    
-    // sessa funcao sé executada sempre que o usuario rola a lista na tela e o if q está no meio da funcao teste se o usuario chegou no fim tela
-    // se ele chegou vai fazer uma solicitacao a API e vai mostrar o spinnner, se seria a bolinha de carremento no final da tela.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         let position = scrollView.contentOffset.y
         
         guard let mApi = self.api else { return }
@@ -104,10 +113,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             self.tabelaPersonagem.tableFooterView = createSpinnerFooter()
             
             self.carregaPersonagens()
+           
         }
     }
     
-    // Nessa funcao é resposavel de carregar os personagens da API baseado no current page, que guarda a informacao da pagina atual.
     func carregaPersonagens(){
         self.currentPage += 1
         guard let mApi = self.api else { return }
@@ -120,30 +129,29 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         } errorR: { errorR in
             switch errorR{
             case .emptyArray:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error.")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Deu error")
             case .notFound:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado.")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Não encontrado")
             case .emptyResponse:
-                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet.")
+                self.mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: "Sem internet")
             default:
                 break;
             }
         }
     }
     
-    //Essa funcao vai mostrar um alerta de mensagem ao usuario quando ele estiver sem internet e vai pergutar se gostaria de ir a tela de favoritos.
     func mostraAlertaDeErroQuandoAlgoNaAPIDaErrado(mensagem: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .actionSheet)
             
             guard let mApi = self.api else {return}
-            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente.", style: .default) { _ in
+            let botaoRefazChamada = UIAlertAction(title: "Tentar novamente", style: .default) { _ in
                 mApi
             }
-            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos.", style: .default) { _ in
+            let botaoLevaParaFavoritos = UIAlertAction(title: "Ir para Favoritos", style: .default) { _ in
                 self.getFavoritos()
             }
-            let botaoEntendi = UIAlertAction(title: "Cancelar.", style: .cancel, handler: nil)
+            let botaoEntendi = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
             
             alert.addAction(botaoRefazChamada)
             alert.addAction(botaoLevaParaFavoritos)
@@ -154,35 +162,23 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
     }
     
-    func mostraAlertaComun(mensagem: String){
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .alert)
-            
-            let botaoOK = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alert.addAction(botaoOK)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
 }
 
-//MARK: Extensions
-
+//MARK: Extensions 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? CelulaTableViewCell
-        cell?.accessoryType     = .disclosureIndicator
-        cell?.lblNome.text      = self.arrayPersonagens[indexPath.row].name
-        cell?.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
-        cell?.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
         
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
+        cell.accessoryType     = .disclosureIndicator
+        cell.lblNome.text      = self.arrayPersonagens[indexPath.row].name
+        cell.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
+        cell.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
+
+
         if let image = self.arrayPersonagens[indexPath.row].image{
             let url = URL(string: image)
-            cell?.img.kf.setImage(with: url,
+            cell.img.kf.setImage(with: url,
                                   options: [
                                     .transition(ImageTransition.fade(2.0))
                                    ],
@@ -196,7 +192,7 @@ extension ViewController: UITableViewDataSource{
                                         }
                                 })
         }
-       return cell!
+       return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

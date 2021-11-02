@@ -20,7 +20,6 @@
 		5781F8D4272896E900B148BC /* Resulta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5781F8D3272896E900B148BC /* Resulta.swift */; };
 		57DBD44C272B263D001EFFFD /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD44B272B263D001EFFFD /* ImageViewCell.swift */; };
 		57DBD44F272B26AC001EFFFD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 57DBD44E272B26AC001EFFFD /* SnapKit */; };
-		57DBD454272B2A59001EFFFD /* Favoritos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57DBD453272B2A59001EFFFD /* Favoritos.storyboard */; };
 		57DBD456272B2AEF001EFFFD /* FavoritosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */; };
 		57DBD45A272C24B7001EFFFD /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD459272C24B7001EFFFD /* UIViewController.swift */; };
 		57DBD467272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DBD466272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.swift */; };
@@ -57,7 +56,6 @@
 		5781F8D12728965C00B148BC /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		5781F8D3272896E900B148BC /* Resulta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resulta.swift; sourceTree = "<group>"; };
 		57DBD44B272B263D001EFFFD /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
-		57DBD453272B2A59001EFFFD /* Favoritos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favoritos.storyboard; sourceTree = "<group>"; };
 		57DBD455272B2AEF001EFFFD /* FavoritosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritosVC.swift; sourceTree = "<group>"; };
 		57DBD459272C24B7001EFFFD /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		57DBD464272C7B72001EFFFD /* ProjetoFinalRickAndMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProjetoFinalRickAndMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,7 +145,6 @@
 				5781F8C6272892BC00B148BC /* Cell */,
 				5781F8C3272891E200B148BC /* CelulaTableViewCell.xib */,
 				5781F8B9272891AD00B148BC /* LaunchScreen.storyboard */,
-				57DBD453272B2A59001EFFFD /* Favoritos.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,7 +272,6 @@
 				5781F8BB272891AD00B148BC /* LaunchScreen.storyboard in Resources */,
 				5781F8C5272891E200B148BC /* CelulaTableViewCell.xib in Resources */,
 				5781F8B8272891AD00B148BC /* Assets.xcassets in Resources */,
-				57DBD454272B2A59001EFFFD /* Favoritos.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

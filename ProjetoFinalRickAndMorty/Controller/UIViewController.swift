@@ -20,7 +20,6 @@ extension UIViewController {
                 self.dismiss(animated: true, completion: nil)
             }))
         }
-
         self.present(alert, animated: true, completion: nil)
     }
 }
