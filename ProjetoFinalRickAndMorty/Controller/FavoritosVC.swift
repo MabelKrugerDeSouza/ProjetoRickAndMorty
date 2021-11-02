@@ -26,6 +26,7 @@ class FavoritosVC: UIViewController{
       
         return favoritosPersonagens
     }()
+    
     override func viewDidLoad() {
             super.viewDidLoad()
         
@@ -64,8 +65,8 @@ extension FavoritosVC: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! CelulaTableViewCell
         
         cell.lblNome.text    = self.personagensFavoritos[indexPath.row].name
-        cell.lblStatus.text  = self.personagensFavoritos[indexPath.row].status
-        cell.lblSpecies.text = self.personagensFavoritos[indexPath.row].species
+        cell.lblStatus.text  = "Status  : " + self.personagensFavoritos[indexPath.row].status!
+        cell.lblSpecies.text = "Espécie : "  + self.personagensFavoritos[indexPath.row].species!
         
         if let image = self.personagensFavoritos[indexPath.row].image{
             let url  = URL(string: image)

@@ -152,8 +152,8 @@ extension ViewController: UITableViewDataSource{
         
         cell.accessoryType     = .disclosureIndicator
         cell.lblNome.text      = self.arrayPersonagens[indexPath.row].name
-        cell.lblStatus.text    = self.arrayPersonagens[indexPath.row].status
-        cell.lblSpecies.text   = self.arrayPersonagens[indexPath.row].species
+        cell.lblStatus.text    = "Status : " + self.arrayPersonagens[indexPath.row].status!
+        cell.lblSpecies.text   = "Espécie: " + self.arrayPersonagens[indexPath.row].species!
 
 
         if let image = self.arrayPersonagens[indexPath.row].image{
