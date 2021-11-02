@@ -16,9 +16,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     let reuseIdentifier  = "Celula"
     var currentPage      = 0
     let searchController = UISearchController(searchResultsController: nil)
-    var isSearchBarEmpty: Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
 
     lazy var tabelaPersonagem: UITableView = {
         var tabela = UITableView()
@@ -39,7 +36,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         self.view.addSubview(tabelaPersonagem)
         self.carregaPersonagens()
         self.createRightBarButton()
+        navigationController?.navigationBar.tintColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.tintColor = .darkText
+        }
     
     //MARK: Funcoes
     func createRightBarButton() {
@@ -67,11 +68,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         vc.personagensFavoritos = self.getFavoritesFromDatabase()
         self.show(vc, sender: nil)
         
-        if vc.personagensFavoritos.count <= 0 {
-            self.displayAlert(
-                with: "Lista Favoritos",
-                message: "Lista de favoritos está vazia.")
-        }
+//        if vc.personagensFavoritos.count <= 0 {
+//            self.displayAlert(
+//                with: "Lista Favoritos",
+//                message: "Lista de favoritos está vazia.")
+//        }
+        
     }
     
     convenience init(api: API){
@@ -99,9 +101,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
                 return
             }
             self.tabelaPersonagem.tableFooterView = createSpinnerFooter()
-            
             self.carregaPersonagens()
-           
         }
     }
     
@@ -147,9 +147,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             self.present(alert, animated: true, completion: nil)
         }
-
     }
-    
 }
 
 //MARK: Extensions 

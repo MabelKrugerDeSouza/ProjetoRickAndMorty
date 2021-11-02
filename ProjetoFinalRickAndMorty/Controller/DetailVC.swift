@@ -25,10 +25,10 @@ class DetailVC: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        
         self.view.addSubview(detailPersonagem)
         self.title = personagemTocado.name
+        
+        //self.detailPersonagem.backgroundColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
     }
   
     //MARK: funcoes
@@ -55,13 +55,20 @@ class DetailVC: UIViewController{
 //MARK: extension DataSource
 extension DetailVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        
+        if !verificaPersonagemNoBanco(nomePersonagem: personagemTocado.name!){
+           return 6
+        }
+        else {
+            return 5
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        
+        cell.backgroundColor = UIColor(red: 132.5/255.0, green: 200.5/255.0, blue: 40.0/255.0, alpha: 1.0)
         cell.detailTextLabel?.font = UIFont.boldSystemFont(ofSize: 15.0)
         
         switch indexPath.row {
@@ -78,7 +85,6 @@ extension DetailVC: UITableViewDataSource {
                 cell.detailTextLabel?.text = name
                 cell.detailTextLabel?.font =
                 UIFont.boldSystemFont(ofSize: 30.0)
-                
             }
             
         case 2:
@@ -104,7 +110,8 @@ extension DetailVC: UITableViewDataSource {
                 cell.textLabel?.text = "Adicionar aos favoritos"
                 cell.accessoryType   = .disclosureIndicator
             }
-            default:
+            
+        default:
             return UITableViewCell()
         }
 
@@ -116,29 +123,29 @@ extension DetailVC: UITableViewDataSource {
 extension DetailVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let context = DataBaseController.persistentContainer.viewContext
         
-                    do {
-                        guard let name = personagemTocado.name else {return}
+        if indexPath.row == 5 {
+            let context = DataBaseController.persistentContainer.viewContext
+            
+                        do {
+                            guard let name = personagemTocado.name else {return}
 
-                        //esta fazendo um request na entidade para ver se aquele personagem ja existe, buscando pelo nome
-                        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
-                        fetchRequest.predicate =  NSPredicate(format: "name =%@", name)
-                        let fetchedPersonagens = try context.fetch(fetchRequest)
-                        print(fetchedPersonagens.count)
+                            //esta fazendo um request na entidade para ver se aquele personagem ja existe, buscando pelo nome
+                            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Personagens")
+                            fetchRequest.predicate =  NSPredicate(format: "name =%@", name)
+                            let fetchedPersonagens = try context.fetch(fetchRequest)
+                            print(fetchedPersonagens.count)
 
-                        if fetchedPersonagens.count == 0 {
+                            if fetchedPersonagens.count == 0 {
 
-                            self.savePersonagem(with: self.personagemTocado, context: context)
+                                self.savePersonagem(with: self.personagemTocado, context: context)
 
-                        } else {
-
-                            self.displayAlert(with: "Favoritos",
-                                              message: "O personagem \(self.personagemTocado.name!) já está favoritado.")
+                            }
+                        } catch let error {
+                            print(error)
                         }
-                    } catch let error {
-                        print(error)
-                    }
+        }
+       
     }
     
     private func savePersonagem(with newPersonagem: Personagem, context: NSManagedObjectContext) {

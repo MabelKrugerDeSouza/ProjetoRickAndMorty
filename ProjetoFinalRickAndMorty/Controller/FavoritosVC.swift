@@ -30,9 +30,26 @@ class FavoritosVC: UIViewController{
         
         favoritosPersonagens.frame = self.view.bounds
         
-        self.title = "Rick And Morty"
+        self.title = "Favoritos"
         self.view.addSubview(favoritosPersonagens)
         print(personagensFavoritos)
+        if personagensFavoritos.count <= 0 {
+            self.navigationController?.navigationBar.tintColor = .clear
+            self.mostraAlertaFavoritos(mensagem: "Lista de favoritos está vazia")
+        }
+    }
+    
+    func mostraAlertaFavoritos(mensagem: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Atenção", message: mensagem, preferredStyle: .alert)
+    
+            let botaoLevaParaTelaIncial = UIAlertAction(title: "Ir para tela inicial", style: .default) { _ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(botaoLevaParaTelaIncial)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -75,6 +92,10 @@ extension FavoritosVC: UITableViewDelegate{
         var personagem          = Personagem()
         personagem.image        = personagensFavoritos[indexPath.row].image
         personagem.name         = personagensFavoritos[indexPath.row].name
+        personagem.species      = personagensFavoritos[indexPath.row].species
+        personagem.gender       = personagensFavoritos[indexPath.row].gender
+        personagem.status       = personagensFavoritos[indexPath.row].status
+        
         detail.personagemTocado = personagem
         self.show(detail, sender: nil)
     }
