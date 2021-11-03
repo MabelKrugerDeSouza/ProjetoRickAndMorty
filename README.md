@@ -8,7 +8,7 @@ Aplicativo desenvolvido para o desafio do projeto Maria Vai Com As Dev - Serasa 
 1. - Fazer uma lista com scroll
 2. - Persistencia de dados com lista de favoritos
 3. - Chamada de API externa
-4. - Mostrar pelo menos imagem externa
+4. - Mostrar pelo menos uma imagem externa
 5. - Ter pelo menos um teste unitário 
 
 <h2><b>💻 API Utilizada</b></h2>
