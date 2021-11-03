@@ -66,7 +66,7 @@ extension FavoritosVC: UITableViewDataSource{
         
         cell.lblNome.text    = self.personagensFavoritos[indexPath.row].name
         cell.lblStatus.text  = "Status  : " + self.personagensFavoritos[indexPath.row].status!
-        cell.lblSpecies.text = "Espécie : "  + self.personagensFavoritos[indexPath.row].species!
+        cell.lblSpecies.text = "Species : "  + self.personagensFavoritos[indexPath.row].species!
         
         if let image = self.personagensFavoritos[indexPath.row].image{
             let url  = URL(string: image)

@@ -89,7 +89,7 @@ extension DetailVC: UITableViewDataSource {
             
         case 2:
             if let species = personagemTocado.species{
-                cell.textLabel?.text       = "Espécie:"
+                cell.textLabel?.text       = "Species:"
                 cell.detailTextLabel?.text = species
             }
             
@@ -101,13 +101,13 @@ extension DetailVC: UITableViewDataSource {
            
         case 4:
             if let genrer = personagemTocado.gender {
-                cell.textLabel?.text        = "Genero:"
+                cell.textLabel?.text        = "Genrer:"
                 cell.detailTextLabel?.text  = genrer
             }
             
         case 5:
             if !verificaPersonagemNoBanco(nomePersonagem: personagemTocado.name!){
-                cell.textLabel?.text = "Adicionar aos favoritos"
+                cell.textLabel?.text = "Add to favorites"
                 cell.accessoryType   = .disclosureIndicator
             }
             
